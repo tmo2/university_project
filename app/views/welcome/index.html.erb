@@ -1,0 +1,7 @@
+<div class="posts-index">
+  <div class="">
+    <% if @posts.present? %>
+      <%= render 'posts/posts', posts: @posts %>
+    <% end %>
+  </div>
+</div>
