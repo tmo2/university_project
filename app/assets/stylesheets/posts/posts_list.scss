@@ -1,0 +1,13 @@
+@import "loader";
+
+.posts-list {
+  ul {
+    list-style: none;
+    li {
+      width: 30%;
+      @include bp(mobile) {
+        width: 50%;
+      }
+    }
+  }
+}

@@ -2,8 +2,22 @@
   <ul>
     <% posts.each do |post| %>
       <li>
-        <%= post.title %>
-        <%= post.content %>
+        <%= link_to post_path(post), class: "post_link" do %>
+          <div class="post-user">
+            <%= image_tag post.user.icon %>
+            <br>
+            <%= post.user.name %>
+          </div>
+          <div class="post-created">
+            <%= time_ago_in_words post.created_at%> ago
+          </div>
+          <div class="post-title">
+            <%= post.title %>
+          </div>
+          <div class="post-content">
+            <%= post.content %>
+          </div>
+        <% end %>
       </li>
     <% end %>
   </ul>

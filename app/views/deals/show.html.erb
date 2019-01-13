@@ -1,0 +1,58 @@
+<div id="main" class="deals-show">
+  <h2>依頼内容</h2>
+  <%= image_tag @requester.icon %>
+  <div class="post-created">
+    <%= time_ago_in_words @post.created_at%> ago
+  </div>
+  <div class="post-title">
+    <%= @post.title %>
+  </div>
+  <div class="post-content">
+    <%= @post.content %>
+  </div>
+  <div class="deal-constractor">
+    <p>
+      請負人: <%= @contractor.name %>
+    </p>
+  </div>
+  <% if @deal_treat == "request" %>
+    <div class="deal-status">
+      <% case @deal.status %>
+      <% when "applied" %>
+        <p>ステータス: 応募中</p>
+      <% when "accepted" %>
+        <p>ステータス: 応募承認済み</p>
+      <% when "working" %>
+        <p>ステータス: 実行中</p>
+      <% when "delivered" %>
+        <p>ステータス: 配送中</p>
+      <% when "paid" %>
+        <p>ステータス: 完了</p>
+      <% when  "rejected" %>
+        この請負人には依頼しませんでした。
+      <% end %>
+    </div>
+  <% elsif @deal_treat == "contract" %>
+    <div class="deal-status">
+      <% case @deal.status %>
+      <% when "applied" %>
+        <p>ステータス: 応募中</p>
+        <p>応募の承認を待ちましょう</p>
+      <% when "accepted" %>
+        <p>ステータス: 応募承認済み</p>
+        <p>応募が承認されました。下のボタンを押して依頼を実行しましょう。</p>
+      <% when "working" %>
+        <p>ステータス: 実行中</p>
+        <p></p>
+        <%= link_to chat_board_path(@chat_board) %>
+      <% when "delivered" %>
+        <p>ステータス: 配送完了</p>
+      <% when "paid" %>
+        <p>ステータス: 依頼完了</p>
+      <% when  "rejected" %>
+        この依頼は別の人が請け負いました。
+        別の依頼を探しましょう。
+      <% end %>
+    </div>
+  <% end %>
+</div>

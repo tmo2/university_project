@@ -5,6 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :board_user_relations
   has_many :chat_boards, through: :board_user_relations
   has_many :chats
+
+  def icon
+    'user_icon.png'
+  end
 end

@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181224195844) do
+ActiveRecord::Schema.define(version: 20190111113504) do
 
   create_table "board_user_relations", force: :cascade do |t|
-    t.integer  "room_id"
+    t.integer  "chat_board_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -40,14 +40,29 @@ ActiveRecord::Schema.define(version: 20181224195844) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "deals", force: :cascade do |t|
+    t.integer  "post_id",                   null: false
+    t.integer  "requester_id",              null: false
+    t.integer  "contractor_id",             null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "status",        default: 0, null: false
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "category_id"
-    t.integer  "user_id"
-    t.integer  "status",      default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "user_id",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "place_id"
   end
 
   create_table "transactions", force: :cascade do |t|

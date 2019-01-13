@@ -1,0 +1,19 @@
+<div id="main" class="posts-show">
+  <div class="post-user">
+    <%= image_tag @post.user.icon %>
+    <br>
+    <%= @post.user.name %>
+  </div>
+  <div class="post-created">
+    <%= time_ago_in_words @post.created_at%> ago
+  </div>
+  <div class="post-title">
+    <%= @post.title %>
+  </div>
+  <div class="post-content">
+    <%= @post.content %>
+  </div>
+  <% if current_user.present? && @post.user != current_user %>
+    <%= link_to "頼みごとを受ける", deals_path(params: { deal: { post_id: @post.id, requester_id: @post.user.id, contractor_id: current_user.id }}), method: :post %>
+  <% end %>
+</div>

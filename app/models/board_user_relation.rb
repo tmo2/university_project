@@ -1,5 +1,4 @@
 class BoardUserRelation < ActiveRecord::Base
-
-  has_one :user_id
-  belongs_to :chat_boards
+  belongs_to :user
+  belongs_to :chat_board
 end
